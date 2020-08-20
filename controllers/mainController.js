@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const db = require('../database/models')
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const formatPrice = (price,discount) => toThousand(Math.round(price*(1-(discount/100))));
@@ -10,9 +11,8 @@ const formatPrice = (price,discount) => toThousand(Math.round(price*(1-(discount
 const controller = {
 	root: (req, res) => {
 	
-		const productsVisited = products.filter(product => product.category === "visited");
-        const productsInSale = products.filter(product => product.category === "in-sale");
-		res.render("index", {productsVisited, productsInSale,toThousand,formatPrice});
+		db.Product.findAll().then(products => res.render("index", {products,toThousand,formatPrice}))
+		
 
 
 
