@@ -20,11 +20,11 @@ const controller = {
 
             db.Product.findByPk(req.params.id)
     
-                .then(function (producto) {
+                .then(function (product) {
     
                    
     
-                    res.render('detail', { producto,toThousand, formatPrice });
+                    res.render('detail', { product,toThousand, formatPrice });
     
                 })
                 .catch(error => console.log(error));
