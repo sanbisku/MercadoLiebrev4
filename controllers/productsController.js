@@ -55,14 +55,16 @@ const controller = {
 
         edit: (req, res) => {
 
-            db.Product.findByPk(req.params.productId)
+            db.Product.findByPk(req.params.id)
     
                 .then(function (product) {
                    
     
+                   let productToEdit = product;
+    
                    
     
-                    res.render('product-edit-form', { product });
+                    res.render('product-edit-form', { productToEdit });
     
                 })
     
