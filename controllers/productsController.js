@@ -81,7 +81,7 @@ const controller = {
 			discount: parseFloat(req.body.discount),
 			category: req.body.category,
 			description: req.body.description,
-			image: "image"
+			
     
     
             }, {
@@ -93,7 +93,7 @@ const controller = {
            
             })
     
-            res.send("Editado!");
+            res.redirect('/');
     
             
             
